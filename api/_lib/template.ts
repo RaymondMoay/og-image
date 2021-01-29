@@ -12,9 +12,9 @@ const bold = readFileSync(`${__dirname}/../_fonts/Inter-Bold.woff2`).toString('b
 const mono = readFileSync(`${__dirname}/../_fonts/Vera-Mono.woff2`).toString('base64');
 
 function getCss(theme: string, fontSize: string) {
-    let background = 'white';
+    let background = '#fffefc';
     let foreground = 'black';
-    let radial = 'lightgray';
+    let radial = '#0e762b';
 
     if (theme === 'dark') {
         background = 'black';
