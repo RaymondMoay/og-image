@@ -14,7 +14,7 @@ const mono = readFileSync(`${__dirname}/../_fonts/Vera-Mono.woff2`).toString('ba
 function getCss(theme: string, fontSize: string) {
     let background = '#fffefc';
     let foreground = 'black';
-    let radial = '#0e762b';
+    let radial = '#0e762c50';
 
     if (theme === 'dark') {
         background = 'black';
@@ -84,7 +84,7 @@ function getCss(theme: string, fontSize: string) {
     }
 
     .spacer {
-        margin: 150px;
+        margin: 120px;
     }
 
     .emoji {
@@ -99,19 +99,13 @@ function getCss(theme: string, fontSize: string) {
         font-size: ${sanitizeHtml(fontSize)};
         font-style: normal;
         color: ${foreground};
-        line-height: 1.3;
-    }
-
-    .bookTitle {
-        font-weight: bold;
-        font-size: ${sanitizeHtml(fontSize)};
-        text-align: center;
-    }
+        line-height: 1.5;
+    
     `;
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
-    const { text, theme, md, fontSize, bookTitle, images, widths, heights } = parsedReq;
+    const { text, theme, md, fontSize, images, widths, heights } = parsedReq;
     return `<!DOCTYPE html>
 <html>
     <meta charset="utf-8">
@@ -127,18 +121,19 @@ export function getHtml(parsedReq: ParsedRequest) {
                     getPlusSign(i) + getImage(img, widths[i], heights[i])
                 ).join('')}
             </div>
-            <div class="heading>
-                Key Ideas of
-            </div>
-            <div class="bookTitle">
-             ${bookTitle}
+            <div class="spacer"/>
+            <div class="heading">
+            Key Ideas of <br/>
+            <b>${emojify(
+                md ? marked(text) : sanitizeHtml(text)
+            )}</b>
             </div>           
         </div>
     </body>
 </html>`;
 }
 
-function getImage(src: string, width ='auto', height = '225') {
+function getImage(src: string, width ='auto', height = '300') {
     return `<img
         class="logo"
         alt="Generated Image"

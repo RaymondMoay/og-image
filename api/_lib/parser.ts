@@ -52,13 +52,13 @@ function getArray(stringOrArray: string[] | string | undefined): string[] {
 
 function getDefaultImages(images: string[], theme: Theme): string[] {
     const defaultImage = theme === 'light'
-        ? 'https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-black.svg'
-        : 'https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-white.svg';
+        ? 'https://firebasestorage.googleapis.com/v0/b/bard-94c91.appspot.com/o/logo.svg?alt=media&token=831d02d4-0586-4153-9882-60fbdfa35098'
+        : 'https://firebasestorage.googleapis.com/v0/b/bard-94c91.appspot.com/o/logo.svg?alt=media&token=831d02d4-0586-4153-9882-60fbdfa35098';
 
     if (!images || !images[0]) {
         return [defaultImage];
     }
-    if (!images[0].startsWith('https://assets.vercel.com/') && !images[0].startsWith('https://assets.zeit.co/')) {
+    if (!images[0].startsWith('https://firebasestorage.googleapis.com/v0/b/bard-94c91.appspot.com/o/')) {
         images[0] = defaultImage;
     }
     return images;
