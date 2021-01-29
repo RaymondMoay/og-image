@@ -93,6 +93,11 @@ function getCss(theme: string, fontSize: string) {
         margin: 0 .05em 0 .1em;
         vertical-align: -0.1em;
     }
+
+    .brand-title {
+        font-weight: bold;
+        color: #0e762c;
+    }
     
     .heading {
         font-family: 'Inter', sans-serif;
@@ -105,7 +110,7 @@ function getCss(theme: string, fontSize: string) {
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
-    const { text, theme, md, fontSize, images, widths, heights } = parsedReq;
+    const { text, theme, md, home, fontSize, images, widths, heights } = parsedReq;
     return `<!DOCTYPE html>
 <html>
     <meta charset="utf-8">
@@ -119,11 +124,11 @@ export function getHtml(parsedReq: ParsedRequest) {
             <div class="logo-wrapper">
                 ${images.map((img, i) =>
                     getPlusSign(i) + getImage(img, widths[i], heights[i])
-                ).join('')}
+                ).join('')}                
             </div>
             <div class="spacer"/>
             <div class="heading">
-            Key Ideas of <br/>
+            ${home ? "" : "Key ideas of <br/>" } 
             <b>${emojify(
                 md ? marked(text) : sanitizeHtml(text)
             )}</b>
